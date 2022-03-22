@@ -43,6 +43,7 @@ Retuns all accounts that have been pwned via the supplied email address / userna
 
 Get-PwnedAccount -csv c:\temp\emailaddress.csv -apiKey "xxxxxxxxxxxxxxx"\
 Imports a list of email addresses in csv format.  Each email address being a seperate row.
+In addition, it exports a csv with the response in the working directory (./)
 
 Get-PwnedPassword -Password monkey\
 Identifies if the password has been found. *No API key required
