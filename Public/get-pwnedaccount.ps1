@@ -37,6 +37,7 @@ Function Get-PwnedAccount {
 
             .NOTES
             Author:  Mark Ukotic
+            Mod. by: Paulo Sarrín 
             Website: http://blog.ukotic.net
             Twitter: @originaluko
             GitHub:  https://github.com/originaluko/
@@ -143,6 +144,7 @@ Function Get-PwnedAccount {
                 $request
             }
             'csv' {
+                $csvExport = @()
                 $csvImport = Import-Csv -Path $CSV -Header "Accounts"
                 foreach ($email in $csvImport) {
                     try { 
@@ -157,6 +159,7 @@ Function Get-PwnedAccount {
                                 'Description' = 'Email address found in breach'
                             }
                         $response
+                        $csvExport += $response
                         }
                     Start-Sleep -Milliseconds $RateLimit
                     }   
@@ -202,6 +205,7 @@ Function Get-PwnedAccount {
                     Start-Sleep -Milliseconds $RateLimit
                     }
                 }
+                $csvExport | Export-Csv -Path .\csvExport.csv
             }
         }
     }
